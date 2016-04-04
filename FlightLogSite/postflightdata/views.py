@@ -13,5 +13,9 @@ def mission(request, mission_name):
 
 def airport(request, ident):
     response = "You're looking at airport %s, with altitude %s."
-    elv = Airport.objects.get(identifier=ident).elevation
-    return HttpResponse(response % (ident,elv))
+    try:
+        elv = Airport.objects.get(identifier=ident).elevation
+        return HttpResponse(response % (ident,elv))
+    except:
+        response = "Airport: %s does not exist in the database."
+        return HttpResponse(response % ident)
