@@ -19,3 +19,7 @@ def airport(request, ident):
     except:
         response = "Airport: %s does not exist in the database."
         return HttpResponse(response % ident)
+
+def pilot(request, ident):
+    response = "You're looking at pilot %s."
+    return HttpResponse(response % ident)
